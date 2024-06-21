@@ -1,13 +1,14 @@
 import { useState } from "react"
 
-function SearchForm({ setSearchTerm }) {
+function SearchForm({ setQuery }) {
   const [input, setInput] = useState("")
+
   function handleChange(e) {
     setInput(e.target.value)
   }
   function handleSubmit(e) {
     e.preventDefault()
-    setSearchTerm(input)
+    setQuery(input)
   }
 
   return (

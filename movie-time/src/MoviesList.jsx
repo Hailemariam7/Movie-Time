@@ -2,16 +2,17 @@
 import { useNavigate } from "react-router-dom"
 import useFetch from "./useFetch"
 
-const MoviesList = ({ searchTerm }) => {
+const MoviesList = ({ query }) => {
   const navigate = useNavigate()
   //const API_KEY = process.env.REACT_APP_API_KEY
   const API_KEY = "fe4e1083c94c0926ccbca5cdc54bdeab"
   const trendingUrl = `https://api.themoviedb.org/3/trending/movie/week?api_key=${API_KEY}`
-  const searchTermUrl = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${searchTerm}`
+  const searchTermUrl = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${query}`
 
-  const url = searchTerm ? searchTermUrl : trendingUrl
+  const url = query ? searchTermUrl : trendingUrl
 
   const { data: movies, loading, error } = useFetch(url)
+  console.log("movies", movies)
 
   function handleMovieClick(id) {
     navigate(`/movie/${id}`)
@@ -21,9 +22,7 @@ const MoviesList = ({ searchTerm }) => {
   if (error) return <p>Error fetching movies: {error.message}</p>
   if (!movies) return null
 
-  const title = searchTerm
-    ? `Search result for "${searchTerm}"`
-    : "Trending Movies"
+  const title = query ? `Search result for "${query}"` : "Trending Movies"
 
   return (
     <div className='movies-list'>

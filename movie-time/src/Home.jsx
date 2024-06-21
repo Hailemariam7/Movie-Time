@@ -3,11 +3,12 @@ import SearchForm from "./SearchForm"
 import MoviesList from "./MoviesList"
 
 function Home() {
-  const [searchTerm, setSearchTerm] = useState("")
+  const [query, setQuery] = useState("")
+
   return (
     <div>
-      <SearchForm searchTerm={setSearchTerm} />
-      <MoviesList searchTerm={searchTerm} />
+      <SearchForm setQuery={setQuery} />
+      <MoviesList query={query} />
     </div>
   )
 }
