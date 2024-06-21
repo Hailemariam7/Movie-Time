@@ -2,13 +2,13 @@
 import { useNavigate } from "react-router-dom"
 import useFetch from "./useFetch"
 
-const MoviesList = ({ query }) => {
+const TopRated = ({ query }) => {
   const navigate = useNavigate()
   //const API_KEY = process.env.REACT_APP_API_KEY
   const API_KEY = "fe4e1083c94c0926ccbca5cdc54bdeab"
-  const url = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${query}`
+  const topRatedUrl = `https://api.themoviedb.org/3/movie/top_rated?api_key=${API_KEY}&language=en-US&page=1`
 
-  const { data: movies, loading, error } = useFetch(url)
+  const { data: movies, loading, error } = useFetch(topRatedUrl)
 
   function handleMovieClick(id) {
     navigate(`/movie/${id}`)
@@ -18,11 +18,9 @@ const MoviesList = ({ query }) => {
   if (error) return <p>Error fetching movies: {error.message}</p>
   if (!movies) return null
 
-  const title = `Search result for "${query}"`
-
   return (
     <div className='movies-list'>
-      <h2>{title}</h2>
+      <h2>'Trending Movies'</h2>
       <div className='movies-grid'>
         {movies.results.map((movie) => (
           <div
@@ -43,4 +41,4 @@ const MoviesList = ({ query }) => {
   )
 }
 
-export default MoviesList
+export default TopRated

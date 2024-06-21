@@ -5,6 +5,7 @@ function SearchForm({ setQuery }) {
 
   function handleChange(e) {
     setInput(e.target.value)
+    setQuery(e.target.value)
   }
   function handleSubmit(e) {
     e.preventDefault()
