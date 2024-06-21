@@ -1,15 +1,15 @@
-import { useState } from "react"
-import SearchForm from "./SearchForm"
-import MoviesList from "./MoviesList"
+import { Route, Routes } from "react-router-dom"
+import Home from "./Home"
+import MovieDetail from "./MovieDetail"
 import "./App.css"
 
 function App() {
-  const [searchTerm, setSearchTerm] = useState("")
-
   return (
     <>
-      <SearchForm setSearchTerm={setSearchTerm} />
-      <MoviesList searchTerm={searchTerm} />
+      <Routes>
+        <Route path='/' element={<Home />}></Route>
+        <Route path='/movie/:id' element={<MovieDetail />}></Route>
+      </Routes>
     </>
   )
 }

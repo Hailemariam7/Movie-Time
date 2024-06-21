@@ -1,20 +1,17 @@
 import { useEffect, useState } from "react"
 
-function useFetch(searchTerm) {
-  const [movies, setMovies] = useState([])
+function useFetch(url) {
+  const [data, setMovies] = useState(null)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
 
   useEffect(() => {
     async function fetchMovies() {
-      const API_KEY = "fe4e1083c94c0926ccbca5cdc54bdeab"
-      const url = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${searchTerm}`
-
+      setLoading(true)
       try {
-        setLoading(true)
         const response = await fetch(url)
         const data = await response.json()
-        setMovies(data.results)
+        setMovies(data)
         setLoading(false)
       } catch (error) {
         setError(error)
@@ -22,12 +19,12 @@ function useFetch(searchTerm) {
       }
     }
 
-    if (searchTerm) {
+    if (url) {
       fetchMovies()
     }
-  }, [searchTerm])
+  }, [url])
 
-  return { movies, loading, error }
+  return { data, loading, error }
 }
 
 export default useFetch
