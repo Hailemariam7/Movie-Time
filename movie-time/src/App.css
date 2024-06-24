@@ -11,7 +11,7 @@
 }
 
 .movie-card {
-  width: 200px;
+  width: 320px;
   border: 1px solid #ddd;
   border-radius: 8px;
   overflow: hidden;
@@ -19,7 +19,8 @@
 }
 
 .movie-card img {
-  width: 100%;
+  width: 320px;
+  height: 400px;
 }
 
 .movie-card h3 {

@@ -6,6 +6,8 @@ function SearchForm({ setQuery }) {
   function handleChange(e) {
     setInput(e.target.value)
     setQuery(e.target.value)
+    localStorage.removeItem("query")
+    localStorage.setItem("query", e.target.value)
   }
   function handleSubmit(e) {
     e.preventDefault()

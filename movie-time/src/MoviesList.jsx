@@ -1,44 +1,43 @@
-//import "dotenv/config"
-import { useNavigate } from "react-router-dom"
-import useFetch from "./useFetch"
+import { useState, useEffect } from "react"
+import { RenderMovies } from "./RenderMovies"
 
 const MoviesList = ({ query }) => {
-  const navigate = useNavigate()
-  //const API_KEY = process.env.REACT_APP_API_KEY
+  const [page, setPage] = useState(1)
+  const [url, setUrl] = useState("")
+  const [reset, setReset] = useState(false)
+  const [currentQuery, setCurrentQuery] = useState(
+    query || localStorage.getItem("query") || ""
+  )
   const API_KEY = "fe4e1083c94c0926ccbca5cdc54bdeab"
-  const url = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${query}`
 
-  const { data: movies, loading, error } = useFetch(url)
+  useEffect(() => {
+    if (query) {
+      localStorage.setItem("query", query)
+      setCurrentQuery(query)
+      setPage(1)
+      setReset(true)
+    }
+  }, [query])
 
-  function handleMovieClick(id) {
-    navigate(`/movie/${id}`)
+  useEffect(() => {
+    setUrl(
+      `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${currentQuery}&page=${page}`
+    )
+  }, [page, currentQuery])
+
+  const handleMoreClick = () => {
+    setPage((prevPage) => prevPage + 1)
+    setReset(false)
   }
 
-  if (loading) return <p>Loading...</p>
-  if (error) return <p>Error fetching movies: {error.message}</p>
-  if (!movies) return null
-
-  const title = `Search result for "${query}"`
-
   return (
-    <div className='movies-list'>
-      <h2>{title}</h2>
-      <div className='movies-grid'>
-        {movies.results.map((movie) => (
-          <div
-            key={movie.id}
-            className='movie-card'
-            onClick={() => handleMovieClick(movie.id)}
-          >
-            <img
-              src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-              alt={movie.title}
-            />
-            <h3>{movie.title}</h3>
-            {/* <p>{movie.overview}</p> */}
-          </div>
-        ))}
-      </div>
+    <div>
+      <RenderMovies
+        title={`Search result for "${currentQuery}"`}
+        url={url}
+        reset={reset}
+      />
+      <button onClick={handleMoreClick}>More</button>
     </div>
   )
 }

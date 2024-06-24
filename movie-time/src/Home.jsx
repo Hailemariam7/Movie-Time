@@ -8,6 +8,12 @@ function Home() {
   return (
     <div>
       <SearchForm setQuery={setQuery} />
+
+      {/*  {query !== "" && (
+        <div>
+          <h1>Discover the movie your next movie</h1>
+        </div>
+      )} */}
       <MoviesList query={query} />
     </div>
   )

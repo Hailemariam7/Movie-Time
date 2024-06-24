@@ -5,6 +5,7 @@ const MovieDetail = () => {
   const { id } = useParams()
   const API_KEY = "fe4e1083c94c0926ccbca5cdc54bdeab"
   const movieDetailUrl = `https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}&append_to_response=credits,videos`
+  const watchProvidersUrl = `https://api.themoviedb.org/3/movie/${id}/watch/providers?api_key=${API_KEY}`
 
   const {
     data: movie,
@@ -12,9 +13,19 @@ const MovieDetail = () => {
     error: movieError,
   } = useFetch(movieDetailUrl)
 
-  if (movieLoading) return <p>Loading...</p>
-  if (movieError)
-    return <p>Error fetching movie details: {movieError.message}</p>
+  const {
+    data: providers,
+    loading: providersLoading,
+    error: providersError,
+  } = useFetch(watchProvidersUrl)
+
+  if (movieLoading || providersLoading) return <p>Loading...</p>
+  if (movieError || providersError)
+    return (
+      <p>
+        Error fetching data: {movieError?.message || providersError?.message}
+      </p>
+    )
   if (!movie) return null
 
   const director = movie.credits.crew.find(
@@ -24,6 +35,8 @@ const MovieDetail = () => {
   const trailers = movie.videos.results.filter(
     (video) => video.type === "Trailer"
   )
+
+  const providerInfo = providers.results?.US?.flatrate || []
 
   return (
     <div className='movie-detail'>
@@ -64,6 +77,22 @@ const MovieDetail = () => {
               </div>
             ))}
           </div>
+        </div>
+      )}
+      {providerInfo.length > 0 && (
+        <div className='watch-providers'>
+          <h3>Watch Providers</h3>
+          <ul>
+            {providerInfo.map((provider) => (
+              <li key={provider.provider_id}>
+                <img
+                  src={`https://image.tmdb.org/t/p/w92${provider.logo_path}`}
+                  alt={provider.provider_name}
+                />
+                {provider.provider_name}
+              </li>
+            ))}
+          </ul>
         </div>
       )}
     </div>
