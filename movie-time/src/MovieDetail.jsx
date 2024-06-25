@@ -40,26 +40,31 @@ const MovieDetail = () => {
 
   return (
     <div className='movie-detail'>
-      <h2>{movie.title}</h2>
-      <img
-        src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-        alt={movie.title}
-      />
-      <p>{movie.overview}</p>
-      <p>
-        <strong>Release Date:</strong> {movie.release_date}
-      </p>
-      <p>
-        <strong>Director:</strong> {director ? director.name : "N/A"}
-      </p>
-      <h3>Top Actors:</h3>
-      <ul>
-        {actors.map((actor) => (
-          <li key={actor.id}>
-            {actor.name} as {actor.character}
-          </li>
-        ))}
-      </ul>
+      <div className='movie-info'></div>
+      <div className='movie-card'>
+        <h2>{movie.title}</h2>
+        <img
+          src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+          alt={movie.title}
+        />
+        <p>{movie.overview}</p>
+        <p>
+          <strong>Release Date:</strong> {movie.release_date}
+        </p>
+      </div>
+      <div className='movie-credits'>
+        <p>
+          <strong>Director:</strong> {director ? director.name : "N/A"}
+        </p>
+        <h3>Top Actors:</h3>
+        <ul>
+          {actors.map((actor) => (
+            <li key={actor.id}>
+              {actor.name} as {actor.character}
+            </li>
+          ))}
+        </ul>
+      </div>
       {trailers.length > 0 && (
         <div className='trailers'>
           <h3>Trailers</h3>

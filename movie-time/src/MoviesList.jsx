@@ -37,7 +37,9 @@ const MoviesList = ({ query }) => {
         url={url}
         reset={reset}
       />
-      <button onClick={handleMoreClick}>More</button>
+      <button onClick={handleMoreClick} className='more-button'>
+        More
+      </button>
     </div>
   )
 }

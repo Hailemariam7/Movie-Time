@@ -1,19 +1,20 @@
-import { useState, useEffect, useContext } from "react"
+import React, { useState, useEffect, useContext } from "react"
 import { useNavigate } from "react-router-dom"
 import { WatchlistContext } from "./WatchlistContext"
 import useFetch from "./useFetch"
-//import lightIcon from "./assets/lightWatchListIcon.png"
-//import darkIcon from "./assets/darkWatchListIcon.png"
 
 export function RenderMovies({ title, url, reset }) {
   const { watchlist, toggleWatchlist } = useContext(WatchlistContext)
-
   const [movies, setMovies] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
   const navigate = useNavigate()
 
   const { data, loading: fetchLoading, error: fetchError } = useFetch(url)
+
+  useEffect(() => {
+    localStorage.setItem("watchlist", JSON.stringify(watchlist))
+  }, [watchlist])
 
   useEffect(() => {
     if (fetchError) {
@@ -39,7 +40,6 @@ export function RenderMovies({ title, url, reset }) {
 
   return (
     <div className='movies-list'>
-      <h2>{title}</h2>
       <div className='movies-grid'>
         {movies.map((movie) => (
           <div
@@ -48,28 +48,25 @@ export function RenderMovies({ title, url, reset }) {
             onClick={() => handleMovieClick(movie.id)}
           >
             <img
-              src={
-                watchlist.includes(movie.id)
-                  ? "./assets/darkWatchListIcon.png"
-                  : "./assets/lightWatchListIcon.png"
-              }
-              alt={
-                watchlist.includes(movie.id)
-                  ? "Remove from watchlist"
-                  : "Add to watchlist"
-              }
-              onClick={(e) => {
-                toggleWatchlist(movie.id)
-                e.stopPropagation()
-              }}
-              style={{ cursor: "pointer" }}
-            />
-            <img
               src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
               alt={movie.title}
             />
             <h3>{movie.title}</h3>
-            <p>{movie.overview}</p>
+            <button
+              onClick={(e) => {
+                toggleWatchlist(movie.id)
+                e.stopPropagation()
+                localStorage.setItem("watchlist", watchlist)
+              }}
+              style={{
+                backgroundColor: watchlist.includes(movie.id) ? "red" : "green",
+              }}
+              className='watchlist-button'
+            >
+              {watchlist.includes(movie.id)
+                ? "Remove from watchlist"
+                : "Add to watchlist"}
+            </button>
           </div>
         ))}
       </div>

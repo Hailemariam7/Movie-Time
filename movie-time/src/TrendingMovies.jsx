@@ -18,7 +18,9 @@ const TrendingMovies = () => {
   return (
     <div>
       <RenderMovies title='Top Rated' url={url} />
-      <button onClick={handleMoreClick}>More</button>
+      <button onClick={handleMoreClick} className='more-button'>
+        More
+      </button>
     </div>
   )
 }

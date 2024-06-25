@@ -13,35 +13,49 @@ import Watchlist from "./Watchlist"
 function App() {
   return (
     <WatchlistProvider>
-      <>
-        <nav>
+      <div className='app'>
+        <div className='hero-icon'>
+          <img src='./mobile-app.png' alt='app-icon' />
+          <span>FilmMine</span>
+        </div>
+        <nav className='menu-bar'>
           <ul>
             <li>
-              <Link to='/'>Home</Link>
+              <Link to='/' className='nav-item'>
+                Home
+              </Link>
             </li>
             <li>
-              <Link to='/trending'>Trending</Link>
+              <Link to='/trending' className='nav-item'>
+                Trending
+              </Link>
             </li>
             <li>
-              <Link to='/top-rated'>Top Rated</Link>
+              <Link to='/top-rated' className='nav-item'>
+                Top Rated
+              </Link>
             </li>
             <li>
-              Genres <GenresDropdown />
+              <GenresDropdown />
             </li>
             <li>
-              <Link to='/watchlist'>Watchlist</Link>
+              <Link to='/watchlist' className='nav-item'>
+                Watchlist
+              </Link>
             </li>
           </ul>
         </nav>
-        <Routes>
-          <Route path='/' element={<Home />} />
-          <Route path='/movie/:id' element={<MovieDetail />} />
-          <Route path='/trending' element={<TrendingMovies />} />
-          <Route path='/top-rated' element={<TopRated />} />
-          <Route path='/genres/:genreId' element={<GenreMovies />} />
-          <Route path='/watchlist' element={<Watchlist />} />
-        </Routes>
-      </>
+        <div className='home-page'>
+          <Routes>
+            <Route path='/' element={<Home />} />
+            <Route path='/movie/:id' element={<MovieDetail />} />
+            <Route path='/trending' element={<TrendingMovies />} />
+            <Route path='/top-rated' element={<TopRated />} />
+            <Route path='/genres/:genreId' element={<GenreMovies />} />
+            <Route path='/watchlist' element={<Watchlist />} />
+          </Routes>
+        </div>
+      </div>
     </WatchlistProvider>
   )
 }

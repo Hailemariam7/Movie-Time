@@ -15,7 +15,7 @@ function SearchForm({ setQuery }) {
   }
 
   return (
-    <div>
+    <div className='search-bar'>
       <form action='' onSubmit={handleSubmit}>
         <input type='text' onChange={handleChange} />
         <button type='submit'>Search</button>

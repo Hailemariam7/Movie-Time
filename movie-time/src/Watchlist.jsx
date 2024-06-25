@@ -6,11 +6,13 @@ function Watchlist() {
   const [watchlistMovies, setWatchlistMovies] = useState([])
   const API_KEY = "fe4e1083c94c0926ccbca5cdc54bdeab"
 
+  const savedWatchlist = watchlist || localStorage.getItem("watchlist")
+
   useEffect(() => {
     const fetchWatchlistMovies = async () => {
       try {
         const movies = await Promise.all(
-          watchlist.map(async (id) => {
+          savedWatchlist.map(async (id) => {
             const response = await fetch(
               `https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}`
             )
@@ -31,7 +33,6 @@ function Watchlist() {
 
   return (
     <div>
-      <h2>Watchlist</h2>
       <div className='movies-grid'>
         {watchlistMovies.length > 0 ? (
           watchlistMovies.map((movie) => (

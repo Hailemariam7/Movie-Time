@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useState, useContext } from "react"
 import { useParams, useNavigate } from "react-router-dom"
 import useFetch from "./useFetch"
+import { WatchlistContext } from "./WatchlistContext"
 
 const GenreMovies = () => {
+  const { watchlist, toggleWatchlist } = useContext(WatchlistContext)
   const [page, setPage] = useState(1)
   const [url, setUrl] = useState("")
   const { genreId } = useParams()
@@ -27,7 +29,6 @@ const GenreMovies = () => {
 
   return (
     <div className='movies-list'>
-      <h2>Movies</h2>
       <div className='movies-grid'>
         {movies.results.map((movie) => (
           <div
@@ -40,10 +41,26 @@ const GenreMovies = () => {
               alt={movie.title}
             />
             <h3>{movie.title}</h3>
+            <button
+              onClick={(e) => {
+                toggleWatchlist(movie.id)
+                e.stopPropagation()
+              }}
+              style={{
+                backgroundColor: watchlist.includes(movie.id) ? "red" : "green",
+              }}
+              className='watchlist-button'
+            >
+              {watchlist.includes(movie.id)
+                ? "Remove from watchlist"
+                : "Add to watchlist"}
+            </button>
           </div>
         ))}
-        <button onClick={handleMoreClick}>More</button>
       </div>
+      <button onClick={handleMoreClick} className='more-button'>
+        More
+      </button>
     </div>
   )
 }

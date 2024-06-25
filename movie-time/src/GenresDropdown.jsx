@@ -23,7 +23,13 @@ const GenresDropdown = () => {
   }, [])
 
   return (
-    <select onChange={(e) => navigate(`/genres/${e.target.value}`)}>
+    <select
+      onChange={(e) => {
+        navigate(`/genres/${e.target.value}`)
+        window.location.reload()
+      }}
+      className='dropdown'
+    >
       <option value=''>Select Genre</option>
       {genres.map((genre) => (
         <option key={genre.id} value={genre.id}>
