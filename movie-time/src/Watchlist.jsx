@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react"
-import { WatchlistContext } from "./WatchlistContext"
+import { WatchlistContext } from "./context/WatchlistContext"
 
 function Watchlist() {
   const { watchlist } = useContext(WatchlistContext)

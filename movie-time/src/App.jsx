@@ -6,13 +6,13 @@ import TrendingMovies from "./TrendingMovies"
 import GenreMovies from "./GenreMovies"
 import TopRated from "./TopRated"
 import GenresDropdown from "./GenresDropdown"
-import WatchlistProvider from "./WatchlistContext"
+import WatchlistProvider from "./context/WatchlistContext"
 import Watchlist from "./Watchlist"
 
 import "./App.css"
 
 function App() {
-  const [openMenu, setOpenMenu] = useState(false)
+  const [openMenu, setOpenMenu] = useState(true)
 
   const handleResize = () => {
     if (window.innerWidth > 600) {
@@ -50,25 +50,25 @@ function App() {
         >
           <ul>
             <li>
-              <Link to='/' className='nav-item' onClick={toggleMenu}>
+              <Link to='/' className='nav-item' onClick={handleResize}>
                 Home
               </Link>
             </li>
             <li>
-              <Link to='/trending' className='nav-item' onClick={toggleMenu}>
+              <Link to='/trending' className='nav-item' onClick={handleResize}>
                 Trending
               </Link>
             </li>
             <li>
-              <Link to='/top-rated' className='nav-item' onClick={toggleMenu}>
+              <Link to='/top-rated' className='nav-item' onClick={handleResize}>
                 Top Rated
               </Link>
             </li>
             <li>
-              <GenresDropdown />
+              <GenresDropdown setOpenMenu={setOpenMenu} />
             </li>
             <li>
-              <Link to='/watchlist' className='nav-item' onClick={toggleMenu}>
+              <Link to='/watchlist' className='nav-item' onClick={handleResize}>
                 Watchlist
               </Link>
             </li>

@@ -24,6 +24,7 @@ const WatchlistProvider = ({ children }) => {
         return [...prevWatchlist, movieId]
       }
     })
+    localStorage.setItem("watchlist", watchlist)
   }
 
   return (

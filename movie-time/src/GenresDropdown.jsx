@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 
-const GenresDropdown = () => {
+const GenresDropdown = ({ setMenuOpen }) => {
   const [genres, setGenres] = useState([])
   const API_KEY = "fe4e1083c94c0926ccbca5cdc54bdeab"
   const navigate = useNavigate()
@@ -27,6 +27,7 @@ const GenresDropdown = () => {
       onChange={(e) => {
         navigate(`/genres/${e.target.value}`)
         window.location.reload()
+        setMenuOpen(true)
       }}
       className='dropdown'
     >
