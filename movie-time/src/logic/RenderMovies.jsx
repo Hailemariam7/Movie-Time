@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react"
 import { useNavigate } from "react-router-dom"
-import { WatchlistContext } from "./context/WatchlistContext"
-import useFetch from "./customHook/useFetch"
+import { WatchlistContext } from "../context/WatchlistContext"
+import useFetch from "../hooks/useFetch"
 
 export function RenderMovies({ title, url, reset }) {
   const { watchlist, toggleWatchlist } = useContext(WatchlistContext)

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import { RenderMovies } from "./RenderMovies"
+import { RenderMovies } from "../logic/RenderMovies"
 
 const MoviesList = ({ query }) => {
   const [page, setPage] = useState(1)

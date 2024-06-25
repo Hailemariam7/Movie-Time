@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom"
-import useFetch from "./customHook/useFetch"
+import useFetch from "../hooks/useFetch"
 
 const MovieDetail = () => {
   const { id } = useParams()

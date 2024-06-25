@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from "react"
 import { useParams, useNavigate } from "react-router-dom"
-import useFetch from "./customHook/useFetch"
-import { WatchlistContext } from "./context/WatchlistContext"
+import useFetch from "../hooks/useFetch"
+import { WatchlistContext } from "../context/WatchlistContext"
 
 const GenreMovies = () => {
   const { watchlist, toggleWatchlist } = useContext(WatchlistContext)

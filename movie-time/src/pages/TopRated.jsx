@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import { RenderMovies } from "./RenderMovies"
+import { RenderMovies } from "../logic/RenderMovies"
 
 const TopRated = () => {
   const [page, setPage] = useState(1)
