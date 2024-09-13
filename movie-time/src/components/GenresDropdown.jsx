@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
+import "./GenresDropdown.scss"
 
 const GenresDropdown = ({ setMenuOpen }) => {
   const [genres, setGenres] = useState([])
@@ -26,7 +27,7 @@ const GenresDropdown = ({ setMenuOpen }) => {
     <select
       onChange={(e) => {
         navigate(`/genres/${e.target.value}`)
-        window.location.reload()
+        window.location.reload() // Note: This reload can be removed for a smoother UX
         setMenuOpen(true)
       }}
       className='dropdown'

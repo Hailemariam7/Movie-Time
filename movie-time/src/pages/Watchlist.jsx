@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from "react"
 import { WatchlistContext } from "../context/WatchlistContext"
+import "./WatchList.scss" // Import the SCSS file
 
 function Watchlist() {
   const { watchlist } = useContext(WatchlistContext)
@@ -10,7 +11,7 @@ function Watchlist() {
   useEffect(() => {
     localStorage.setItem("watchlist", JSON.stringify(watchlist))
     setSavedWatchlist(JSON.parse(localStorage.getItem("watchlist")))
-  }, [])
+  }, [watchlist])
 
   useEffect(() => {
     const fetchWatchlistMovies = async () => {
@@ -33,10 +34,10 @@ function Watchlist() {
     if (watchlist.length > 0) {
       fetchWatchlistMovies()
     }
-  }, [watchlist])
+  }, [savedWatchlist])
 
   return (
-    <div>
+    <div className='watchlist-container'>
       <div className='movies-grid'>
         {watchlistMovies.length > 0 ? (
           watchlistMovies.map((movie) => (
@@ -49,7 +50,7 @@ function Watchlist() {
             </div>
           ))
         ) : (
-          <p>No movies in your watchlist.</p>
+          <p className='no-movies-message'>No movies in your watchlist.</p>
         )}
       </div>
     </div>

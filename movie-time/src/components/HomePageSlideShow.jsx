@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react"
+import "./HomepageSlideshow.scss" // Import the SCSS file
+
 const images = [
   "./img1.JPG",
   "./img2.JPG",

@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useContext } from "react"
 import { useParams, useNavigate } from "react-router-dom"
 import useFetch from "../hooks/useFetch"
+import "./GenreMovies.scss"
 import { WatchlistContext } from "../context/WatchlistContext"
 
 const GenreMovies = () => {
@@ -15,7 +16,7 @@ const GenreMovies = () => {
     setUrl(
       `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&with_genres=${genreId}&page=${page}`
     )
-  }, [page])
+  }, [page, genreId])
 
   const handleMoreClick = () => {
     setPage((prevPage) => prevPage + 1)
@@ -46,10 +47,9 @@ const GenreMovies = () => {
                 toggleWatchlist(movie.id)
                 e.stopPropagation()
               }}
-              style={{
-                backgroundColor: watchlist.includes(movie.id) ? "red" : "green",
-              }}
-              className='watchlist-button'
+              className={`watchlist-button ${
+                watchlist.includes(movie.id) ? "remove" : ""
+              }`}
             >
               {watchlist.includes(movie.id)
                 ? "Remove from watchlist"

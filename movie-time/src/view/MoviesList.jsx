@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react"
 import { RenderMovies } from "../logic/RenderMovies"
+import "./MoviesList.scss"
 
 const MoviesList = ({ query }) => {
   const [page, setPage] = useState(1)
@@ -31,7 +32,7 @@ const MoviesList = ({ query }) => {
   }
 
   return (
-    <div>
+    <div className='movies-list-container'>
       <RenderMovies
         title={`Search result for "${currentQuery}"`}
         url={url}

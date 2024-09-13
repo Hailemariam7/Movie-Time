@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react"
 import { RenderMovies } from "../logic/RenderMovies"
+import "./TopTrending.scss"
 
 const TrendingMovies = () => {
   const [page, setPage] = useState(1)
   const [url, setUrl] = useState("")
   const API_KEY = "fe4e1083c94c0926ccbca5cdc54bdeab"
+
   const handleMoreClick = () => {
     setPage((prevPage) => prevPage + 1)
   }
@@ -16,8 +18,9 @@ const TrendingMovies = () => {
   }, [page])
 
   return (
-    <div>
-      <RenderMovies title='Top Rated' url={url} />
+    <div className='movies-container'>
+      <h2 className='section-title'>Trending Movies</h2>
+      <RenderMovies url={url} />
       <button onClick={handleMoreClick} className='more-button'>
         More
       </button>

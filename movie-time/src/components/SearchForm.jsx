@@ -1,4 +1,5 @@
 import { useState } from "react"
+import "./SearchForm.scss"
 
 function SearchForm({ setQuery }) {
   const [input, setInput] = useState("")
@@ -9,6 +10,7 @@ function SearchForm({ setQuery }) {
     localStorage.removeItem("query")
     localStorage.setItem("query", e.target.value)
   }
+
   function handleSubmit(e) {
     e.preventDefault()
     setQuery(input)
@@ -16,8 +18,13 @@ function SearchForm({ setQuery }) {
 
   return (
     <div className='search-bar'>
-      <form action='' onSubmit={handleSubmit}>
-        <input type='text' onChange={handleChange} placeholder='search' />
+      <form onSubmit={handleSubmit}>
+        <input
+          type='text'
+          onChange={handleChange}
+          placeholder='Search for movies...'
+        />
+        <button type='submit'>Search</button>
       </form>
     </div>
   )

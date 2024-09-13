@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react"
 import { RenderMovies } from "../logic/RenderMovies"
+import "./TopTrending.scss" // Import the SCSS file
 
 const TopRated = () => {
   const [page, setPage] = useState(1)
@@ -17,8 +18,9 @@ const TopRated = () => {
   }, [page])
 
   return (
-    <div>
-      <RenderMovies title='Top Rated' url={url} />
+    <div className='movies-container'>
+      <h2 className='section-title'>Top Rated Movies</h2>
+      <RenderMovies url={url} />
       <button onClick={handleMoreClick} className='more-button'>
         More
       </button>

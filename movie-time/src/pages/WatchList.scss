@@ -1,0 +1,48 @@
+/* Container for the entire watchlist page */
+.watchlist-container {
+  padding: 20px;
+  background-color: #f9f9f9;
+}
+
+/* Grid layout for movie cards */
+.movies-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+  margin: 0 auto;
+  max-width: 1200px;
+}
+
+/* Styling for individual movie cards */
+.movie-card {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: scale(1.03);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  }
+
+  img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  h3 {
+    padding: 10px;
+    font-size: 1.1rem;
+    color: #333;
+    text-align: center;
+  }
+}
+
+/* No movies message */
+.no-movies-message {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #555;
+}
