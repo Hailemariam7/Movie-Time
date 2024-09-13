@@ -1,8 +1,8 @@
-# FilmMine
+# Movie-Time
 
 ![homepage capture](./public/homepage.JPG)
 
-FilmMine is a movie discovery application built with React. It allows users to browse trending movies, top-rated movies, and movies by genre. Users can also add movies to their personal watchlist.
+Movie-Time is a movie discovery application built with React. It allows users to browse trending movies, top-rated movies, and movies by genre. Users can also add movies to their personal watchlist.
 
 ## Features
 

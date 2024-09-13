@@ -34,7 +34,7 @@ function App() {
         <div className='logo'>
           <Link to='/' className='logo'>
             <img src='./mobile-app.png' alt='app-icon' />
-            <span>FilmMine</span>
+            <span>Movie-Time</span>
           </Link>
         </div>
         <div className='menu-toggle'>
