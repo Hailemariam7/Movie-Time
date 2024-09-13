@@ -5,16 +5,7 @@ export const WatchlistContext = createContext()
 const WatchlistProvider = ({ children }) => {
   const [watchlist, setWatchlist] = useState([])
 
-  useEffect(() => {
-    const savedWatchlist = localStorage.getItem("watchlist")
-    if (savedWatchlist) {
-      setWatchlist(JSON.parse(savedWatchlist))
-    }
-  }, [])
-
-  useEffect(() => {
-    localStorage.setItem("watchlist", JSON.stringify(watchlist))
-  }, [watchlist])
+  localStorage.setItem("watchlist", JSON.stringify(watchlist))
 
   const toggleWatchlist = (movieId) => {
     setWatchlist((prevWatchlist) => {
@@ -24,7 +15,6 @@ const WatchlistProvider = ({ children }) => {
         return [...prevWatchlist, movieId]
       }
     })
-    localStorage.setItem("watchlist", watchlist)
   }
 
   return (

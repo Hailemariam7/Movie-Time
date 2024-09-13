@@ -4,9 +4,13 @@ import { WatchlistContext } from "../context/WatchlistContext"
 function Watchlist() {
   const { watchlist } = useContext(WatchlistContext)
   const [watchlistMovies, setWatchlistMovies] = useState([])
+  const [savedWatchlist, setSavedWatchlist] = useState(watchlist)
   const API_KEY = "fe4e1083c94c0926ccbca5cdc54bdeab"
 
-  const savedWatchlist = watchlist || localStorage.getItem("watchlist")
+  useEffect(() => {
+    localStorage.setItem("watchlist", JSON.stringify(watchlist))
+    setSavedWatchlist(JSON.parse(localStorage.getItem("watchlist")))
+  }, [])
 
   useEffect(() => {
     const fetchWatchlistMovies = async () => {
