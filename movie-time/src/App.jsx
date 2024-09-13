@@ -8,8 +8,8 @@ import TopRated from "./pages/TopRated"
 import GenresDropdown from "./components/GenresDropdown"
 import WatchlistProvider from "./context/WatchlistContext"
 import Watchlist from "./pages/Watchlist"
-import closeMenu from "../public/closeMenu.JPG"
-import menuIcon from "../public/menuIcon.JPG"
+import closeMenu from "/closeMenu.JPG"
+import menuIcon from "/menuIcon.JPG"
 
 import "./App.scss"
 
@@ -81,9 +81,9 @@ function App() {
                 Top Rated
               </Link>
             </li>
-            <li>
+            {/*       <li>
               <GenresDropdown setOpenMenu={setOpenMenu} />
-            </li>
+            </li> */}
             <li>
               <Link
                 to='/watchlist'
