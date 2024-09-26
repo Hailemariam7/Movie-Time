@@ -2,7 +2,8 @@
 
 [Here is a link to the app](https://movie-time-qz8wwk3ig-hailemariam7s-projects.vercel.app)
 
-![homepage capture](./movie-time/public/homepage.JPG)
+![image](https://github.com/user-attachments/assets/11a1b539-3e6a-4a19-b651-ea9bee080090)
+
 
 Movie-Time is a movie discovery application built with React. It allows users to browse trending movies, top-rated movies, and movies by genre. Users can also add movies to their personal watchlist.
 
