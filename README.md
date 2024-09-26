@@ -1,6 +1,6 @@
 # Movie-Time
 
-(Here is a link to the app) [https://movie-time-qz8wwk3ig-hailemariam7s-projects.vercel.app]
+[Here is a link to the app](https://movie-time-qz8wwk3ig-hailemariam7s-projects.vercel.app)
 
 ![homepage capture](./movie-time/public/homepage.JPG)
 
